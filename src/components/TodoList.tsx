@@ -1,16 +1,31 @@
-import TodoItem from './TodoItem'
+import type { Todo } from '../types/todo';
+import TodoItem from './TodoItem';
 
-function TodoList({ todos, onToggle, onDelete, onEdit }) {
+interface TodoListProps {
+  todos: Todo[];
+  onToggle: (id: string) => void;
+  onDelete: (id: string) => void;
+  onEdit: (id: string, newText: string) => void;
+}
+
+export default function TodoList({
+  todos,
+  onToggle,
+  onDelete,
+  onEdit,
+}: TodoListProps) {
   if (todos.length === 0) {
     return (
       <div className="text-center py-12">
-        <p className="text-gray-500 text-lg">No todos yet. Add one to get started!</p>
+        <p className="text-gray-500 text-lg">
+          No todos yet. Add one to get started!
+        </p>
       </div>
-    )
+    );
   }
 
-  const completedCount = todos.filter(todo => todo.completed).length
-  const totalCount = todos.length
+  const completedCount = todos.filter((todo) => todo.completed).length;
+  const totalCount = todos.length;
 
   return (
     <div>
@@ -24,9 +39,9 @@ function TodoList({ todos, onToggle, onDelete, onEdit }) {
           </span>
         )}
       </div>
-      
+
       <div className="space-y-2">
-        {todos.map(todo => (
+        {todos.map((todo) => (
           <TodoItem
             key={todo.id}
             todo={todo}
@@ -37,7 +52,5 @@ function TodoList({ todos, onToggle, onDelete, onEdit }) {
         ))}
       </div>
     </div>
-  )
+  );
 }
-
-export default TodoList

@@ -1,6 +1,6 @@
 # 📝 Todo App
 
-A modern, responsive todo application built with React, Tailwind CSS, and localStorage for data persistence.
+A modern, responsive todo application built with **React**, **TypeScript**, **Tailwind CSS**, and **localStorage** for data persistence.
 
 ## ✨ Features
 
@@ -58,6 +58,7 @@ npm run preview
 ## 🛠️ Tech Stack
 
 - **React 18** - UI library
+- **TypeScript** - Type-safe JavaScript
 - **Vite** - Build tool and dev server
 - **Tailwind CSS** - Utility-first CSS framework
 - **localStorage** - Client-side data persistence
@@ -68,17 +69,21 @@ npm run preview
 todo-frontend/
 ├── src/
 │   ├── components/
-│   │   ├── AddTodo.jsx      # Component for adding new todos
-│   │   ├── TodoList.jsx     # Component for displaying list of todos
-│   │   └── TodoItem.jsx     # Individual todo item component
+│   │   ├── TodoContainer.tsx  # Container: todo state & CRUD logic
+│   │   ├── AddTodo.tsx       # Component for adding new todos
+│   │   ├── TodoList.tsx      # Component for displaying list of todos
+│   │   └── TodoItem.tsx      # Individual todo item component
+│   ├── types/
+│   │   └── todo.ts           # Todo type definition
 │   ├── utils/
-│   │   └── localStorage.js  # Utility functions for localStorage
-│   ├── App.jsx              # Main application component
-│   ├── main.jsx             # Application entry point
-│   └── index.css           # Global styles with Tailwind imports
+│   │   └── localStorage.ts   # Utility functions for localStorage
+│   ├── App.tsx               # Root layout (delegates to TodoContainer)
+│   ├── main.tsx              # Application entry point
+│   └── index.css             # Global styles with Tailwind imports
 ├── index.html
 ├── package.json
-├── vite.config.js
+├── tsconfig.json
+├── vite.config.ts
 ├── tailwind.config.js
 └── postcss.config.js
 ```

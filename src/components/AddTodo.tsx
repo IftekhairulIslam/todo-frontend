@@ -1,15 +1,19 @@
-import { useState } from 'react'
+import { useState, FormEvent } from 'react';
 
-function AddTodo({ onAdd }) {
-  const [input, setInput] = useState('')
+interface AddTodoProps {
+  onAdd: (text: string) => void;
+}
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
+export default function AddTodo({ onAdd }: AddTodoProps) {
+  const [input, setInput] = useState('');
+
+  const handleSubmit = (e: FormEvent) => {
+    e.preventDefault();
     if (input.trim()) {
-      onAdd(input)
-      setInput('')
+      onAdd(input);
+      setInput('');
     }
-  }
+  };
 
   return (
     <form onSubmit={handleSubmit} className="mb-6">
@@ -29,7 +33,5 @@ function AddTodo({ onAdd }) {
         </button>
       </div>
     </form>
-  )
+  );
 }
-
-export default AddTodo

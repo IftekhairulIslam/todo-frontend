@@ -1,15 +1,12 @@
-import { useState, useEffect } from 'react';
-import type { Todo } from '../types/todo';
-import { getTodos, saveTodos } from '../utils/localStorage';
-import AddTodo from './AddTodo';
-import TodoList from './TodoList';
+import { useState, useEffect } from "react";
+import type { Todo } from "../types/todo";
+import { getTodos, saveTodos } from "../utils/localStorage";
+import AddTodo from "./AddTodo";
+import TodoList from "./TodoList";
 
 export default function TodoContainer() {
-  const [todos, setTodos] = useState<Todo[]>([]);
-
-  useEffect(() => {
-    setTodos(getTodos());
-  }, []);
+  const initialTodos = getTodos() || [];
+  const [todos, setTodos] = useState<Todo[]>(initialTodos);
 
   useEffect(() => {
     saveTodos(todos);
@@ -28,8 +25,8 @@ export default function TodoContainer() {
   const toggleTodo = (id: string) => {
     setTodos((prev) =>
       prev.map((todo) =>
-        todo.id === id ? { ...todo, completed: !todo.completed } : todo
-      )
+        todo.id === id ? { ...todo, completed: !todo.completed } : todo,
+      ),
     );
   };
 
@@ -40,8 +37,8 @@ export default function TodoContainer() {
   const editTodo = (id: string, newText: string) => {
     setTodos((prev) =>
       prev.map((todo) =>
-        todo.id === id ? { ...todo, text: newText.trim() } : todo
-      )
+        todo.id === id ? { ...todo, text: newText.trim() } : todo,
+      ),
     );
   };
 
